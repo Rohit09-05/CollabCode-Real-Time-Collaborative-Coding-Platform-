@@ -1,5 +1,6 @@
 [build]
 builder = "nixpacks"
+watchPatterns = ["src/**", "server.js", "package.json"]
 
 [deploy]
 startCommand = "node server.js"
