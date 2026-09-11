@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log*
+.env
+.env.*
+logs/
+coverage/
+.nyc_output/
+*.test.js
+jest.config.*

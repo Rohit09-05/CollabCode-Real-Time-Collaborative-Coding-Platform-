@@ -1,0 +1,39 @@
+{
+  "name": "collabcode-frontend",
+  "version": "1.0.0",
+  "description": "CollabCode frontend — React + Vite + Monaco",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.24.0",
+    "axios": "1.7.2",
+    "socket.io-client": "4.7.5",
+    "@monaco-editor/react": "4.6.0",
+    "monaco-editor": "0.50.0",
+    "yjs": "13.6.18",
+    "y-monaco": "0.1.6",
+    "y-protocols": "1.0.6",
+    "lib0": "0.2.94",
+    "clsx": "2.1.1",
+    "lucide-react": "0.395.0",
+    "date-fns": "3.6.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.3.1",
+    "vite": "5.3.1",
+    "tailwindcss": "3.4.4",
+    "autoprefixer": "10.4.19",
+    "postcss": "8.4.38",
+    "eslint": "8.57.0",
+    "eslint-plugin-react": "7.34.3",
+    "eslint-plugin-react-hooks": "4.6.2"
+  }
+}

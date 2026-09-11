@@ -1,0 +1,16 @@
+{
+  "name": "collabcode",
+  "version": "1.0.0",
+  "description": "Real-time collaborative coding platform",
+  "private": true,
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "test:backend": "npm run test --workspace=backend",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7"
+  }
+}
