@@ -7,6 +7,8 @@ import SignupPage from './pages/SignupPage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
 import RoomPage from './pages/RoomPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
+import ForgotPasswordPage from './pages/ForgotPasswordPage.jsx';
+import ResetPasswordPage from './pages/ResetPasswordPage.jsx';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -38,6 +40,8 @@ export default function App() {
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/login"     element={<GuestRoute><LoginPage /></GuestRoute>} />
           <Route path="/signup"    element={<GuestRoute><SignupPage /></GuestRoute>} />
+          <Route path="/forgot-password" element={<GuestRoute><ForgotPasswordPage /></GuestRoute>} />
+          <Route path="/reset-password"  element={<ResetPasswordPage />} />
           <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
           <Route path="/room/:code" element={<ProtectedRoute><RoomPage /></ProtectedRoute>} />
           <Route path="*" element={<NotFoundPage />} />

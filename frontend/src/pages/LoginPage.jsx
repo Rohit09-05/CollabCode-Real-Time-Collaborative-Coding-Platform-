@@ -94,7 +94,13 @@ export default function LoginPage() {
                 value={form.email} onChange={handleChange} />
             </div>
             <div>
-              <label className="label">Password</label>
+              <div className="flex items-center justify-between mb-1">
+                <label htmlFor="password" className="label mb-0">Password</label>
+                <Link to="/forgot-password"
+                  className="text-xs text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+                  Forgot password?
+                </Link>
+              </div>
               <div className="relative">
                 <input name="password" type={showPass ? 'text' : 'password'}
                   autoComplete="current-password" required

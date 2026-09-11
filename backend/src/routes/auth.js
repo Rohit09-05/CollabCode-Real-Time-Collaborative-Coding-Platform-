@@ -3,6 +3,7 @@ const { body } = require('express-validator');
 const { validate } = require('../middleware/validate');
 const { authLimiter } = require('../middleware/rateLimiter');
 const { signup, login, refresh, logout } = require('../controllers/authController');
+const { forgotPassword, resetPassword, verifyResetToken } = require('../controllers/passwordController');
 
 const router = express.Router();
 
@@ -31,5 +32,27 @@ router.post(
 
 router.post('/refresh', refresh);
 router.post('/logout', logout);
+
+// ── Password reset ────────────────────────────────────────────────────────────
+router.post(
+  '/forgot-password',
+  authLimiter,
+  [body('email').isEmail().normalizeEmail()],
+  validate,
+  forgotPassword
+);
+
+router.post(
+  '/reset-password',
+  authLimiter,
+  [
+    body('token').notEmpty(),
+    body('password').isLength({ min: 8, max: 128 }),
+  ],
+  validate,
+  resetPassword
+);
+
+router.get('/verify-reset-token', verifyResetToken);
 
 module.exports = router;
