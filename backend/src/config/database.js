@@ -29,11 +29,9 @@ const sequelize = new Sequelize(
 async function connectDB() {
   await sequelize.authenticate();
   logger.info('MySQL connection established.');
-  // sync in dev; use migrations in production
-  if (process.env.NODE_ENV !== 'production') {
-    await sequelize.sync({ alter: true });
-    logger.info('Database synced.');
-  }
+  // Always sync in development; use force:false in production to safely create tables
+  await sequelize.sync({ alter: false, force: false });
+  logger.info('Database synced.');
 }
 
 module.exports = { sequelize, connectDB };
