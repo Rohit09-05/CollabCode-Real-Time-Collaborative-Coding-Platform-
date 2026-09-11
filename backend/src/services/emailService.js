@@ -12,12 +12,12 @@ async function getTransporter() {
       service: 'gmail',
       auth: {
         user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD, // Gmail App Password (not your account password)
+        pass: process.env.GMAIL_APP_PASSWORD,
       },
     });
   }
 
-  // Dev fallback — Ethereal catches the email so you can preview it in the console
+  // Dev fallback — Ethereal
   const testAccount = await nodemailer.createTestAccount();
   const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
@@ -28,17 +28,11 @@ async function getTransporter() {
     },
   });
   logger.warn('No GMAIL_USER set — using Ethereal test SMTP. Emails will NOT be delivered.');
-  return { transporter, previewUrl: true, testAccount };
+  return transporter;
 }
 
-/**
- * Send a password reset email.
- * @param {string} toEmail
- * @param {string} resetUrl  Full URL including token, e.g. https://app.vercel.app/reset-password?token=xxx
- */
 async function sendPasswordResetEmail(toEmail, resetUrl) {
-  const result = await getTransporter();
-  const transporter = result.transporter || result;
+  const transporter = await getTransporter();
 
   const info = await transporter.sendMail({
     from: process.env.GMAIL_USER
@@ -128,8 +122,9 @@ async function sendPasswordResetEmail(toEmail, resetUrl) {
   });
 
   // In dev with Ethereal, log the preview URL
-  if (result.previewUrl) {
-    logger.info(`Preview email at: ${nodemailer.getTestMessageUrl(info)}`);
+  const previewUrl = nodemailer.getTestMessageUrl(info);
+  if (previewUrl) {
+    logger.info(`Preview email at: ${previewUrl}`);
   }
 
   logger.info(`Password reset email sent to ${toEmail}`);
