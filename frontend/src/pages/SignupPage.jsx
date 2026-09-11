@@ -5,7 +5,7 @@ import { signup as apiSignup } from '../api/auth.js';
 import { useAuth } from '../hooks/useAuth.js';
 import { useTheme } from '../contexts/ThemeContext.jsx';
 
-function Field({ id, label, type='text', placeholder, autoComplete, value, onChange, error }) {
+function Field({ id, label, type='text', placeholder, autoComplete='off', value, onChange, error }) {
   return (
     <div>
       <label htmlFor={id} className="label">{label}</label>
@@ -95,9 +95,9 @@ export default function SignupPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <Field id="username" label="Username" placeholder="coolcoder"
-              autoComplete="username" value={form.username} onChange={handleChange} error={fieldErrors.username} />
+              autoComplete="off" value={form.username} onChange={handleChange} error={fieldErrors.username} />
             <Field id="email" label="Email" type="email" placeholder="you@example.com"
-              autoComplete="email" value={form.email} onChange={handleChange} error={fieldErrors.email} />
+              autoComplete="off" value={form.email} onChange={handleChange} error={fieldErrors.email} />
 
             <div>
               <label htmlFor="password" className="label">Password</label>
