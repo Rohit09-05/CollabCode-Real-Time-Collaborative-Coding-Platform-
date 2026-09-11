@@ -44,7 +44,7 @@ async function forgotPassword(req, res, next) {
 
     // Send email in background — don't block the response
     sendPasswordResetEmail(user.email, resetUrl).catch((err) => {
-      logger.error('Failed to send reset email', { err: err.message });
+      logger.error('Failed to send reset email', { err: err.message, stack: err.stack });
     });
 
     return res.json({ message: 'If that email is registered, a reset link has been sent.' });
